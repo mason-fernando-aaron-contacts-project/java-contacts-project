@@ -1,7 +1,7 @@
 
 public class Contacts {
     // Comment for commit
-
+    /*=============================== VARIABLES / SETTERS / GETTERS ================================*/
     // Contact phone number variable
     protected int phoneNumber;
 
@@ -22,8 +22,17 @@ public class Contacts {
     public void setName(String name) {
         this.name = name;
     }
+    /*=============================== METHODS ================================*/
 
-    public static void main(String[] args) {
-        System.out.println("he");
+
+
+    /*=============================== CONSTRUCTORS ================================*/
+
+    public Contacts() {
+    }
+    // constructor to make a new contact and set name and phone number
+    public Contacts(int phoneNumber, String name) {
+        this.phoneNumber = phoneNumber;
+        this.name = name;
     }
 }
