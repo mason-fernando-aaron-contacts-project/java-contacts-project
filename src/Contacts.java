@@ -1,5 +1,3 @@
-package src;
-
 public class Contacts {
     // Comment for commit
 
