@@ -2,7 +2,7 @@ public interface ContactsInterface {
     // Added by Mason
     public String getPath();
 
-    public void setPath();
+    public void createPath();
 
     public void createFile();
 
@@ -12,4 +12,7 @@ public interface ContactsInterface {
 
     public void deleteContact();
     // Added by Mason
+
+    // Added by Aaron
+    public void printContacts();
 }
