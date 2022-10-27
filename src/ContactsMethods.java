@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ContactsMethods extends Contacts implements ContactsInterface{
     static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
@@ -39,6 +40,12 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
     public void deleteContact() {
 
     }
+
+    @Override
+    public void promptUser() {
+
+    }
+
     @Override
     public void printContacts(){
 
@@ -53,20 +60,47 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
 //    public static void main(String[] args) {
 //        promptUser();
 //    }
-    @Override
-     public void promptUser() {
-//        Movie[] movies = MoviesArray.findAll();    // This will assign all the movies to the variable
-//        String userChoice = "timmmmmeh"; // We put timmehh because if  can equal to anything
-//        while (!userChoice.equals("0")){   // while the user choice does not equal to 0 it can do any of the options
+
+    public void contactsDisplay() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Contacts> contactsList = new ArrayList<>();
+        String userChoice = "timmmmmmmmeee";
+
+        while (!userChoice.equals("5")) {
             System.out.println("What would you like to do");
             System.out.println("1 - View contacts.");
             System.out.println("2 - Add a new contact");
             System.out.println("3 - Search a contact by name.");
             System.out.println("4 - Delete an existing contact.");
             System.out.println("5 - Exit.");
-            System.out.println("Enter an option (1, 2, 3, 4 or 5)");
+            System.out.println("Enter an option (1, 2, 3, 4 or 5 ");
+            userChoice = scanner.next();
 
-//            userChoice = input.getString("Enter your choice:");
+            switch (userChoice) {
+                case "0" -> {
+                    System.out.println(0);
+                }
+                case "1" -> {
+                    System.out.println(1);
+                }
+                case "2" -> {
+                    System.out.println(2);
+                }
+                case "3" -> {
+                    System.out.println(3);
+                }
+                case "4" -> {
+                    System.out.println(4);
+                }
+                case "5" -> {
+                    System.out.println(5);
+                }
+                default -> {
+                    System.out.println("Wrong input you Dummy");
+                    contactsDisplay();
+                }
+            }
+        }
     }
 
     public ContactsMethods() {
