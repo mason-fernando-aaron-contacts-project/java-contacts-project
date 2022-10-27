@@ -6,7 +6,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsMethods implements ContactsInterface {
-     public static void constactsDisplay() {
+
+
+    @Override
+    public String getPath() {
+        return null;
+    }
+
+    @Override
+    public void createPath() {
+
+    }
+
+    @Override
+    public void createFile() {
+
+    }
+
+    @Override
+    public boolean pathExists() {
+        return false;
+    }
+
+    @Override
+    public void addContact() {
+
+    }
+
+    @Override
+    public void deleteContact() {
+
+    }
+    @Override
+    public void printContacts(){
+
+    }
+//    @Override
+//    public void promptUser(){
+//
+//    }
+
+//    public static void main(String[] args) {
+//        promptUser();
+//    }
+    @Override
+     public void promptUser() {
 //        Movie[] movies = MoviesArray.findAll();    // This will assign all the movies to the variable
 //        String userChoice = "timmmmmeh"; // We put timmehh because if  can equal to anything
 //        while (!userChoice.equals("0")){   // while the user choice does not equal to 0 it can do any of the options
@@ -16,7 +60,7 @@ public class ContactsMethods implements ContactsInterface {
             System.out.println("3 - Search a contact by name.");
             System.out.println("4 - Delete an existing contact.");
             System.out.println("5 - Exit.");
-            System.out.println("Enter an option (1, 2, 3, 4 or 5 ");
+            System.out.println("Enter an option (1, 2, 3, 4 or 5)");
 
 //            userChoice = input.getString("Enter your choice:");
     }
@@ -28,17 +72,51 @@ public class ContactsMethods implements ContactsInterface {
          boolean pathExist = Files.exists(Paths.get("src", directory,fileName));
          return pathExist;
         }
-     public boolean pathExists(String directory){
+     public static boolean pathExists(String directory){
          boolean pathExist = Files.exists(Paths.get("src", directory));
          return pathExist;
      }
 
-     public void printContacts(){
-         List<String> lines = new ArrayList<>();
-         try{
-             lines = Files.readAllLines()
-         }
+     public static Path getPath(String directory){
+//        Path dataDirectory = Paths.get(directory);
+//         System.out.println(dataDirectory.toAbsolutePath());
+         return Paths.get(directory);
      }
+     public Path getAbsolutePath (String path){
+         System.out.println(getPath(path).toAbsolutePath());
+         return getPath(path).toAbsolutePath();
+     }
+
+    // Make a method that reads selected file/path
+    public void readFile(String path){
+        List<String> lines = new ArrayList<>();
+
+        try {
+            if (pathExists(path)){
+                Path newPath = getPath(path);
+                lines = Files.readAllLines(newPath);
+                for (String line : lines) {
+                    System.out.println(line);
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Check path or file");
+        }
+    }
+
+//     public Path createPath(String path){
+//        // make path
+//     }
+
+
+
+//     public void printContacts(){
+//         List<String> lines = new ArrayList<>();
+//         try{
+//             lines = Files.readAllLines()
+//         }
+//     }
 
 //        public void createPath(String directory) {
 //         Path dataDirectory = Paths.get(directory);
@@ -67,40 +145,7 @@ public class ContactsMethods implements ContactsInterface {
 //
 //        }
 
-     @Override
-     public String getPath() {
-         return null;
-     }
-
-     @Override
-     public void createPath() {
-
-     }
-
-     @Override
-     public void createFile() {
-
-     }
-
-     @Override
-     public boolean pathExists() {
-         return false;
-     }
-
-     @Override
-     public void addContact() {
-
-     }
-
-     @Override
-     public void deleteContact() {
-
-     }
-     @Override
-     public void printContacts(){
-
-     }
- }
+ } // End ContactsMethods Class
 
 //try {
 //        Files.write(pathToPeople, classmatesArrayList);

@@ -11,6 +11,8 @@ public interface ContactsInterface {
     public void addContact();
 
     public void deleteContact();
+
+    public void promptUser();
     // Added by Mason
 
     // Added by Aaron
