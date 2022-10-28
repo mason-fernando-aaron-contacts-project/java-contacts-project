@@ -7,6 +7,45 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsMethods extends Contacts implements ContactsInterface{
+    //# Contacts Manager Rubric
+    //
+    //#### Instructions
+    //
+    //For each project aspect below, a grade of 0, 0.5, or 1 will be assigned. Each aspect represents 10% of the total possible grade.
+    //
+    //- **0** - mostly incomplete or not present
+    //- **0.5** - partially completed
+    //- **1** - mostly or fully complete
+    //
+    //
+    //### Presentation (10%)
+    //
+    //___ both team members speak about their contributions (one team member speaks for both if teammate is absent)
+    //
+    //
+    //### Code Structure (30%)
+    //
+    //___ uses a ```Contact``` class to instantiate contacts
+    //
+    //___ smaller main method with bulk of functionality abstracted into additional methods/classes
+    //
+    //___ avoids more than one instantiation of a ```Scanner``` instance
+    //
+    //
+    //### Output (60%)
+    //
+    //___ all contacts can be displayed
+    //
+    //___ a contact can be added and persist in the text file
+    //
+    //___ contacts are searchable by name
+    //
+    //___ a contact can be deleted and removed from the text file
+    //
+    //___ menu is easily understandable and expected user input is intuitive
+    //
+    //___ implements one or more of the suggested bonuses
+
     static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
 
 
