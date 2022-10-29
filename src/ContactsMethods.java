@@ -7,6 +7,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ContactsMethods implements ContactsInterface {
+        static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
+    public static List<String> readLines() {
+        List<String> names;
+        try {
+            names = Files.readAllLines(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return names;
+    }
+    public static void greetNames() {
+        for (String name : readLines()) {
+            System.out.printf("%s%n", name);
+        }
+    }
 
 
     @Override
