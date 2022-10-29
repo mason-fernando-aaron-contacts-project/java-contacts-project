@@ -1,10 +1,15 @@
+import util.Input;
+import util.InputVersionTwo;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ContactsMethods extends Contacts implements ContactsInterface{
     //# Contacts Manager Rubric
@@ -45,12 +50,23 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
     //___ menu is easily understandable and expected user input is intuitive
     //
     //___ implements one or more of the suggested bonuses
-
+// =================================================== Instance Variables ==============================================
     static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
+    static InputVersionTwo userInput = new InputVersionTwo();
 
-
+// ============================================== Interface Reference Methods ==========================================
     @Override
     public String getPath() {
+        return null;
+    }
+
+    @Override
+    public String getPathFile(){
+        return null;
+    }
+
+    @Override
+    public String getPathDirectory(){
         return null;
     }
 
@@ -85,9 +101,7 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
     @Override
     public void readFile(){}
 //    @Override
-//    public void promptUser(){
-//
-//    }
+//    public void promptUser(){}
 
 //    public static void main(String[] args) {
 //        promptUser();
@@ -108,8 +122,12 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
 //            userChoice = input.getString("Enter your choice:");
     }
 
+// ================================================ Constructors =======================================================
+
     public ContactsMethods() {
     }
+
+// =================================================== Methods =========================================================
 
     public boolean pathExists(String directory, String fileName){
 //         boolean pathExist = Files.exists(Paths.get("src", directory,fileName));
@@ -120,19 +138,19 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
          return Files.exists(Paths.get("src", directory));
      }
 
-     public Path getPath(String directory){
+     public Path getPathDirectory(String directory){
 //        Path dataDirectory = Paths.get(directory);
 //         System.out.println(dataDirectory.toAbsolutePath());
          return Paths.get(directory);
      }
 
-     public Path getPath(String directory, String file){
+     public Path getPathFile(String directory, String file){
         return Paths.get(directory, file);
      }
 
      public Path getAbsolutePath (String path){
-         System.out.println(getPath(path).toAbsolutePath());
-         return getPath(path).toAbsolutePath();
+         System.out.println(getPathDirectory(path).toAbsolutePath());
+         return getPathDirectory(path).toAbsolutePath();
      }
 
     // Make a method that reads selected file/path
@@ -141,7 +159,7 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
 
             try {
                 if (pathExists(path)){ /* If the path parameter exists (as a string) */
-                    Path newPath = getPath(path); // set newPath as getPath(path), which returns a
+                    Path newPath = getPathDirectory(path); // set newPath as getPath(path), which returns a
                     lines = Files.readAllLines(newPath);
                     for (String line : lines) {
                         System.out.println(line);
@@ -161,11 +179,11 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
         List<String> lines = new ArrayList<>();
         try {
             if (pathExists(path, file)){ /* If the path parameter exists (as a string) */
-                Path p = getPath(path, file); // set newPath as getPath(path), which returns a
+                Path p = getPathFile(path, file); // set newPath as getPath(path), which returns a
                 lines = Files.readAllLines(p);
-            }
             for (String line : lines) {
                 System.out.println(line);
+            }
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -173,7 +191,7 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
         }
     }
 
-    public static List<String> readLines() {
+    public static List<String> readLines() { /* Thanks, David! */
 
         List<String> names;
         try {
@@ -183,9 +201,21 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
         }
         return names;
     }
-    public static void greetNames() {
+    public static void greetNames() { /* Thanks, David! */
         for (String name : readLines()) {
             System.out.printf("%s%n", name);
         }
     }
+
+    public void addContact (List<String> newContacts) {
+
+
+
+        try {
+            Files.write(p, newContacts, StandardOpenOption.APPEND);
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
  } // End ContactsMethods Class

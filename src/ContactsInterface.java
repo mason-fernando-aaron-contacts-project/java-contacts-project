@@ -2,6 +2,10 @@ public interface ContactsInterface {
     // Added by Mason
     public String getPath();
 
+    public String getPathFile();
+
+    public String getPathDirectory();
+
     public void createPath();
 
     public void createFile();

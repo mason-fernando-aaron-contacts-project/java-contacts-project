@@ -2,9 +2,11 @@ public class ContactsApp {
     public static void main(String[] args) {
         ContactsMethods test = new ContactsMethods();
 //        System.out.println(test.pathExists("contactsPackage"));
-
-
         test.greetNames();
+
+
+
+//        test.readFile("ContactsPackage", "contactlist.txt");
 
 //        // Showing true because the entered text path exists
 //        System.out.println(test.pathExists("contactsPackage/contactlist.txt"));
