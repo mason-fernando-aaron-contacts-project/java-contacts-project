@@ -19,6 +19,9 @@ public interface ContactsInterface {
     public void promptUser();
 
     public void readFile();
+
+    public void overWriteAll();
+
     // Added by Mason
 
     // Added by Aaron

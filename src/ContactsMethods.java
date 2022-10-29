@@ -8,8 +8,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class ContactsMethods extends Contacts implements ContactsInterface{
     //# Contacts Manager Rubric
@@ -99,7 +101,12 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
 
     }
     @Override
+    public void overWriteAll(){}
+
+    @Override
     public void readFile(){}
+
+
 //    @Override
 //    public void promptUser(){}
 
@@ -207,15 +214,46 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
         }
     }
 
+    List<String> poo = Arrays.asList("test\n", "test\n", "test\n");
+
+
+
     public void addContact (List<String> newContacts) {
-
-
+//        private static void writeLines(List<String> lines) {
+//            try {
+//                Files.write(PATH, lines);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
 
         try {
             Files.write(p, newContacts, StandardOpenOption.APPEND);
-        } catch(IOException e) {
-            e.printStackTrace();
+        } catch (IOException e){
+            throw new RuntimeException(e);
         }
+    } // End addContact
+
+    public void overWriteAll(List<String> lines){
+        try {
+            Files.write(p, lines);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void resetDefaults(){
+        List <String> defaultNames = Arrays.asList("Aaron\n" +
+                "210-990-2233\n" +
+                "Mason\n" +
+                "210-991-2332\n" +
+                "Fernando\n" +
+                "210-992-3322\n" +
+                "David\n" +
+                "210-332-9290\n" +
+                "Danny\n" +
+                "210-780-9902");
+        overWriteAll(defaultNames);
     }
 
  } // End ContactsMethods Class
