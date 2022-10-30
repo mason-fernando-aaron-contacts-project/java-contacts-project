@@ -54,7 +54,7 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
     //___ implements one or more of the suggested bonuses
 // =================================================== Instance Variables ==============================================
     static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
-    static InputVersionTwo userInput = new InputVersionTwo();
+    static InputVersionTwo userInputv2 = new InputVersionTwo();
 
 // ============================================== Interface Reference Methods ==========================================
     @Override
@@ -125,8 +125,8 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
             System.out.println("4 - Delete an existing contact.");
             System.out.println("5 - Exit.");
             System.out.println("Enter an option (1, 2, 3, 4 or 5)");
+            userInputv2.getInt();
 
-//            userChoice = input.getString("Enter your choice:");
     }
 
 // ================================================ Constructors =======================================================
@@ -208,6 +208,16 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
         }
         return names;
     }
+    public static List<String> readLines(Path path){
+        List<String> names;
+        try {
+            names = Files.readAllLines(path);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return names;
+    }
+
     public static void greetNames() { /* Thanks, David! */
         for (String name : readLines()) {
             System.out.printf("%s%n", name);
@@ -254,6 +264,33 @@ public class ContactsMethods extends Contacts implements ContactsInterface{
                 "Danny\n" +
                 "210-780-9902");
         overWriteAll(defaultNames);
+    } // End resetDefaults
+
+    // public class SubstringExample{
+    // public static void main(String args[]){
+    // String s1="javatpoint";
+    // System.out.println(s1.substring(2,4));//returns va
+    // System.out.println(s1.substring(2));//returns vatpoint
+    // }}
+
+//    public String setName(){
+//        int count = 0;
+////        readLines();
+////        for (String name, number : readLines()) {
+//////            System.out.printf("%s%n", name);
+////
+////        }
+//        for (int i = 0; i < readLines().size(); i++){
+//            if (i %2 == 0){
+//                String name = readLines().get(i);
+//            } // End if
+//
+//        } // End for loop
+//
+//    }
+
+    public void setNumber(){
+
     }
 
  } // End ContactsMethods Class

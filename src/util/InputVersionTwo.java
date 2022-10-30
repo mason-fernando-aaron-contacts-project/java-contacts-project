@@ -38,7 +38,7 @@ public class InputVersionTwo {
              to catch the NumberFormatException. If the exception is caught, call the getInt() method again.
          */
         public int getInt(){
-            System.out.println("Enter an integer:");
+//            System.out.println("Enter an integer:");
 //             get user input as a string
             // parse the string into a number
             // if the parse input throws an exception, recurse
@@ -48,7 +48,7 @@ public class InputVersionTwo {
             try {
                return Integer.valueOf(userInput);
             } catch (NumberFormatException e){
-                e.printStackTrace();
+//                e.printStackTrace();
                 System.out.println("Incorrect input format. Please try again.");
                 return getInt();
             }
