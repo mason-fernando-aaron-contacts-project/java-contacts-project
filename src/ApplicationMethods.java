@@ -26,7 +26,7 @@ public void promptUser() {
         System.out.println("3 - Search a contact by name.");
         System.out.println("4 - Delete an existing contact.");
         System.out.println("5 - Exit.");
-        System.out.println("Enter an option (1, 2, 3, 4 or 5 ");
+        System.out.println("Enter an option (1, 2, 3, 4 or 5 )");
         userChoice = scanner.next();
 
         switch (userChoice) {
@@ -34,7 +34,7 @@ public void promptUser() {
         case "2" -> addToContactsList();
         case "3" -> searchContact();
         case "4" -> deleteContact();
-        case "5" -> System.out.println(5);
+        case "5" -> System.out.println("Goodbye");
 
 default -> {
         System.out.println("Wrong input you Dummy");
@@ -86,16 +86,17 @@ public static void addToContactsList(){
         String toBeAdded;
         // looping through arrayList of Contact to access properties previously set and combining them as a single string
         for(Contact contact: contactsList){
-        System.out.println(contact.getName());
+//        System.out.println(contact.getName());
         toBeAdded = contact.getName()+":"+contact.getNumber();
         tempArrayList.add(toBeAdded);
         }
         // single string being added to the intermediate ArrayList of String to be able to write to the text file
-        try {
-        Files.write(p, tempArrayList, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-        throw new RuntimeException(e);
-        }
+//        try {
+//        Files.write(p, tempArrayList, StandardOpenOption.APPEND);
+//        } catch (IOException e) {
+//        throw new RuntimeException(e);
+//        }
+
 
 
         }
