@@ -23,14 +23,15 @@ public void promptUser() {
         Scanner scanner = new Scanner(System.in);
         String userChoice = "whatever";
 
-        while (!userChoice.equals("5")) {
+        while (!userChoice.equals("6")) {
         System.out.println("What would you like to do");
         System.out.println("1 - View contacts.");
         System.out.println("2 - Add a new contact");
         System.out.println("3 - Search a contact by name.");
         System.out.println("4 - Delete an existing contact.");
-        System.out.println("5 - Exit.");
-        System.out.println("Enter an option (1, 2, 3, 4 or 5 )");
+        System.out.println("5 - Saving");
+        System.out.println("6 - Exit.");
+        System.out.println("Enter an option (1, 2, 3, 4, 5 or 6)");
         userChoice = scanner.next();
 
         switch (userChoice) {
@@ -39,9 +40,11 @@ public void promptUser() {
         case "3" -> searchContact();
         case "4" -> deleteContact();
         case "5" -> {
+                System.out.println("Saving");
                 writeLines(tempArrayList);
-                System.out.println("Goodbye");
+
         }
+        case "6" -> System.out.println("Goodbye");
 
 default -> {
         System.out.println("Wrong input you Dummy");
@@ -82,7 +85,9 @@ public static void addToContactsList(){
 //        String usrInput = input.getString("Contact Nickname");
         String name = input.getString("Contact name");
         String number = input.getString("Contact Number");
+        number = formatPhoneNum(number);
         Contact newContact = new Contact(name,number);
+
 
         // this is my array List of Contacts adding the contact that was just crated
         contactsList.add(newContact);
@@ -139,5 +144,21 @@ private static List<String> readLines() {
         return names;
         }
 
+        public static String formatPhoneNum(String aNum) {
+                String areaCode = null;
+                String firstThree = null;
+                String lastFour = null;
+                if (aNum.length() == 10) {
+                        areaCode = "(" + aNum.substring(0, 3) + ") ";
+                        firstThree = aNum.substring(3, 6) + "-";
+                        lastFour = aNum.substring(6);
+                } else if (aNum.length() == 7) {
+                        areaCode = "(???) ";
+                        firstThree = aNum.substring(0,3) + "-";
+                        lastFour = aNum.substring(3);
+
+                }
+                return new StringBuilder().append(areaCode).append(firstThree).append(lastFour).toString();
+        }
 
 }
