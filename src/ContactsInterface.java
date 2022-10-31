@@ -13,6 +13,8 @@ public interface ContactsInterface {
     public void deleteContact();
 
     public void promptUser();
+
+    public void readFile();
     // Added by Mason
 
     // Added by Aaron

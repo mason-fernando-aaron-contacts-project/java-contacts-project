@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+<<<<<<< HEAD
 public class ContactsMethods implements ContactsInterface {
         static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
     public static List<String> readLines() {
@@ -22,6 +24,10 @@ public class ContactsMethods implements ContactsInterface {
             System.out.printf("%s%n", name);
         }
     }
+=======
+public class ContactsMethods extends Contacts implements ContactsInterface{
+    static Path p = Paths.get("src", "contactsPackage", "contactlist.txt");
+>>>>>>> eb41f59a200cdd562741d614c0ce897bf89c7712
 
 
     @Override
@@ -63,6 +69,8 @@ public class ContactsMethods implements ContactsInterface {
     public void printContacts(){
 
     }
+    @Override
+    public void readFile(){}
 //    @Override
 //    public void promptUser(){
 //
@@ -118,19 +126,24 @@ public class ContactsMethods implements ContactsInterface {
     }
 
     public boolean pathExists(String directory, String fileName){
-         boolean pathExist = Files.exists(Paths.get("src", directory,fileName));
-         return pathExist;
+//         boolean pathExist = Files.exists(Paths.get("src", directory,fileName));
+         return Files.exists(Paths.get("src", directory, fileName));
         }
-     public static boolean pathExists(String directory){
-         boolean pathExist = Files.exists(Paths.get("src", directory));
-         return pathExist;
+     public boolean pathExists(String directory){
+//         boolean pathExist = Files.exists(Paths.get("src", directory));
+         return Files.exists(Paths.get("src", directory));
      }
 
-     public static Path getPath(String directory){
+     public Path getPath(String directory){
 //        Path dataDirectory = Paths.get(directory);
 //         System.out.println(dataDirectory.toAbsolutePath());
          return Paths.get(directory);
      }
+
+     public Path getPath(String directory, String file){
+        return Paths.get(directory, file);
+     }
+
      public Path getAbsolutePath (String path){
          System.out.println(getPath(path).toAbsolutePath());
          return getPath(path).toAbsolutePath();
@@ -138,15 +151,35 @@ public class ContactsMethods implements ContactsInterface {
 
     // Make a method that reads selected file/path
     public void readFile(String path){
-        List<String> lines = new ArrayList<>();
+        List<String> lines;
 
+            try {
+                if (pathExists(path)){ /* If the path parameter exists (as a string) */
+                    Path newPath = getPath(path); // set newPath as getPath(path), which returns a
+                    lines = Files.readAllLines(newPath);
+                    for (String line : lines) {
+                        System.out.println(line);
+                    }
+                } // End If
+            } // End Try
+
+            catch (Exception e){
+                e.printStackTrace();
+                System.out.println("Check path or file");
+            } // End catch
+
+    } // End readFile method
+
+
+    public void readFile (String path, String file) {
+        List<String> lines = new ArrayList<>();
         try {
-            if (pathExists(path)){
-                Path newPath = getPath(path);
-                lines = Files.readAllLines(newPath);
-                for (String line : lines) {
-                    System.out.println(line);
-                }
+            if (pathExists(path, file)){ /* If the path parameter exists (as a string) */
+                Path p = getPath(path, file); // set newPath as getPath(path), which returns a
+                lines = Files.readAllLines(p);
+            }
+            for (String line : lines) {
+                System.out.println(line);
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -154,50 +187,19 @@ public class ContactsMethods implements ContactsInterface {
         }
     }
 
-//     public Path createPath(String path){
-//        // make path
-//     }
+    public static List<String> readLines() {
 
-
-
-//     public void printContacts(){
-//         List<String> lines = new ArrayList<>();
-//         try{
-//             lines = Files.readAllLines()
-//         }
-//     }
-
-//        public void createPath(String directory) {
-//         Path dataDirectory = Paths.get(directory);
-//         if (!pathExists(directory)){
-//             try{
-//             Files.createDirectories(dataDirectory);
-//             } catch (Exception e){
-//                 e.printStackTrace();
-//                 System.out.println("Something is wrong with the Directory's path or name.");
-//             }
-//         }
-//
-//        }
-
-//        public void createPath(String directory, String fileName){
-//           Path setPathVar = Paths.get(directory, fileName);
-//
-//                try{
-//                    if (!pathExists(directory, fileName)){
-//                        Files.createFile(setPathVar);
-//                    }
-//                } catch(Exception e){
-//                    e.printStackTrace();
-//                    System.out.println("There may be an issue with the file path");
-//                }
-//
-//        }
-
+        List<String> names;
+        try {
+            names = Files.readAllLines(p);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return names;
+    }
+    public static void greetNames() {
+        for (String name : readLines()) {
+            System.out.printf("%s%n", name);
+        }
+    }
  } // End ContactsMethods Class
-
-//try {
-//        Files.write(pathToPeople, classmatesArrayList);
-//        } catch (IOException e) {
-//        e.printStackTrace();
-//        }
