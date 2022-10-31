@@ -11,9 +11,13 @@ import java.util.Scanner;
 
 public class ApplicationMethods {
     static Input input = new Input();
-static Path p = Paths.get("src","contactsPackage", "contactlist.txt");
+        static Path p = Paths.get("src","contactsPackage", "contactlist.txt");
 
-public static ArrayList<Contact> contactsList = new ArrayList<Contact>();
+        static String toBeAdded;
+
+        // intermediate ArrayList of Strings
+        public static ArrayList<String> tempArrayList = new ArrayList<>();
+        public static ArrayList<Contact> contactsList = new ArrayList<Contact>();
 
 public void promptUser() {
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +38,10 @@ public void promptUser() {
         case "2" -> addToContactsList();
         case "3" -> searchContact();
         case "4" -> deleteContact();
-        case "5" -> System.out.println("Goodbye");
+        case "5" -> {
+                writeLines(tempArrayList);
+                System.out.println("Goodbye");
+        }
 
 default -> {
         System.out.println("Wrong input you Dummy");
@@ -77,28 +84,10 @@ public static void addToContactsList(){
         String number = input.getString("Contact Number");
         Contact newContact = new Contact(name,number);
 
-
-        // intermediate ArrayList of Strings
-        ArrayList<String> tempArrayList = new ArrayList<>();
-
         // this is my array List of Contacts adding the contact that was just crated
         contactsList.add(newContact);
-        String toBeAdded;
+
         // looping through arrayList of Contact to access properties previously set and combining them as a single string
-        for(Contact contact: contactsList){
-//        System.out.println(contact.getName());
-        toBeAdded = contact.getName()+":"+contact.getNumber();
-        tempArrayList.add(toBeAdded);
-        }
-        // single string being added to the intermediate ArrayList of String to be able to write to the text file
-//        try {
-//        Files.write(p, tempArrayList, StandardOpenOption.APPEND);
-//        } catch (IOException e) {
-//        throw new RuntimeException(e);
-//        }
-
-
-
         }
 
 public static void searchContact (){
@@ -127,10 +116,16 @@ public static void deleteContact(){
         }
 
 private static void writeLines(List<String> lines) {
+        for(Contact contact: contactsList){
+//        System.out.println(contact.getName());
+                toBeAdded = contact.getName()+":"+contact.getNumber();
+                tempArrayList.add(toBeAdded);
+        }
+        // single string being added to the intermediate ArrayList of String to be able to write to the text file
         try {
-        Files.write(p, lines);
+                Files.write(p, tempArrayList, StandardOpenOption.APPEND);
         } catch (IOException e) {
-        throw new RuntimeException(e);
+                throw new RuntimeException(e);
         }
         }
 
