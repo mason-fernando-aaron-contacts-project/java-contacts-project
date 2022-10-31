@@ -92,7 +92,7 @@ public static void addToContactsList(){
         }
         // single string being added to the intermediate ArrayList of String to be able to write to the text file
         try {
-        Files.write(p, tempArrayList);
+        Files.write(p, tempArrayList, StandardOpenOption.APPEND);
         } catch (IOException e) {
         throw new RuntimeException(e);
         }
