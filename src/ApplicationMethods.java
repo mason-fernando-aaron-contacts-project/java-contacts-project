@@ -105,12 +105,12 @@ public static void searchContact (){
         String userSearch = input.getString("Enter name to search:...");
         try{
         lines = Files.readAllLines(p);
+        for(String contacts : lines){
+        if(contacts.contains(userSearch))
+        System.out.println("here you go: "+contacts);
+        }
         } catch (IOException e) {
         e.printStackTrace();
-        }
-        for(String contacts : lines){
-        if(contacts.equals(userSearch))
-        System.out.println("here you go: "+contacts);
         }
         }
 
