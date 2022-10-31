@@ -70,16 +70,6 @@ public static void viewContacts (){
         } // End enhanced for-loop
         } // End viewContacts();
 
-public static void addNewContact(){
-        String userInput = input.getString("Enter Contact name and Phone Number");
-        List<String> contact = new ArrayList<>();
-        contact.add(userInput);
-        try {
-        Files.write(p, contact, StandardOpenOption.APPEND);
-        } catch (IOException e) {
-        e.printStackTrace();
-        }
-        } // End addNewContact();
 
 public static void addToContactsList(){
         // this block makes an instance of a Contact
