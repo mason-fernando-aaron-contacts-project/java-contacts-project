@@ -86,6 +86,7 @@ public static void addToContactsList(){
         String name = input.getString("Contact name");
         String number = input.getString("Contact Number");
         number = formatPhoneNum(number);
+        name = name.trim();
         Contact newContact = new Contact(name,number);
 
 
@@ -153,7 +154,7 @@ private static List<String> readLines() {
                         firstThree = aNum.substring(3, 6) + "-";
                         lastFour = aNum.substring(6);
                 } else if (aNum.length() == 7) {
-                        areaCode = "(???) ";
+                        areaCode = " ";
                         firstThree = aNum.substring(0,3) + "-";
                         lastFour = aNum.substring(3);
 
