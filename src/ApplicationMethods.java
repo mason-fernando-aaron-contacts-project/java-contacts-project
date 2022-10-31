@@ -1,5 +1,6 @@
 import util.Input;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,7 +42,7 @@ public void promptUser() {
         case "4" -> deleteContact();
         case "5" -> {
                 System.out.println("Saving");
-                writeLines(tempArrayList);
+                SaveLines(tempArrayList);
 
         }
         case "6" -> System.out.println("Goodbye");
@@ -96,6 +97,14 @@ public static void addToContactsList(){
         // looping through arrayList of Contact to access properties previously set and combining them as a single string
         }
 
+public static void writeLines (List<String>lines){
+        try {
+                Files.write(p, lines);
+        }catch (IOException e){
+                throw new RuntimeException(e);
+        }
+}
+
 public static void searchContact (){
         List<String> lines = new ArrayList<>();
         String userSearch = input.getString("Enter name to search:...");
@@ -121,7 +130,7 @@ public static void deleteContact(){
         writeLines(updatedNames);
         }
 
-private static void writeLines(List<String> lines) {
+private static void SaveLines(List<String> lines) {
         for(Contact contact: contactsList){
 //        System.out.println(contact.getName());
                 toBeAdded = contact.getName()+":"+contact.getNumber();
