@@ -25,7 +25,7 @@ public class Hackerank {
                 Scanner scan = new Scanner(System.in);
                 int i = scan.nextInt();
                 double d = scan.nextDouble();
-                scan.nextLine();    /*Ghosting may occur needs this so rest of lines can be read*/
+                scan.nextLine();    /*Ghosting may occur needs this so rest of lines can be read as a String */
                 String s = scan.nextLine();
 
                 System.out.println("String: " + s);
